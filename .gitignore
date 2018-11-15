@@ -7,3 +7,4 @@ pip-selfcheck.json
 share/
 .vscode/
 .pyc
+app.pyc
