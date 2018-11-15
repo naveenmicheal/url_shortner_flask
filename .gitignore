@@ -4,6 +4,6 @@ lib/
 local/
 pip-selfcheck.json
 .gitignore.swp
-form.pyc
 share/
 .vscode/
+.pyc
