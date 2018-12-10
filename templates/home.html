@@ -1,4 +1,41 @@
 {%extends 'layout.html'%}
 {%block content%}
-<h1>Hello world</h1>
+<div class="container">
+	<div class="row">
+    		<h2 id="heading" class=" center-align">lets linking <i class="material-icons">insert_link</i></h2>
+   	</div>
+    <div class="row">
+    		<h4 id="para" class="center-align"> paste your long URL here</h4>
+    </div>
+    <form method="post" action="{{url_for('index')}}">
+    <div class="row center-align ">
+
+    	<div class="input-field">
+          <input  name="lurl" placeholder='Long URL' type="url" required class="validate">
+
+          
+        </div>
+        <button class="btn waves-effect waves-light purple" type="submit">Submit
+   					 <i class="material-icons right">send</i>
+ 		 </button>
+    </div>
+    </form>
+
+</div>
 {%endblock content%}
+
+{%block style%}
+<style>
+#heading{
+	margin-bottom: 0;
+	color:#ecf0f1;
+	font-family: 'Noticia Text', serif;
+}
+#para{
+    font-family: 'Arvo', serif;
+    font-size: 18px;
+    color: #bdc3c7
+}
+
+</style>
+{%endblock style%}

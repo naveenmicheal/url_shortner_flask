@@ -1,27 +1,64 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>url shortnet</title>
-    <link type="text/css" rel="stylesheet" href="/static/materialize.min.css" />
+    <title>url shortner</title>
+    <link type="text/css" rel="stylesheet" href="{{url_for('static',filename='materialize.min.css')}}" />
+    <link href="https://fonts.googleapis.com/css?family=Arvo" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <style type="text/css">
+      #nav-mobile a{
+        padding-right: 30px;
+      }
+      .sidenav{
+        background-color:#576574;
+
+        
+      }
+      .sidenav li a{
+        color: white;
+      }
+          </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Noticia+Text|Unlock" rel="stylesheet">
   </head>
-  <body>
+  <body class="blue-grey darken-4">
     <!-- Nav-Bar -->
-    <nav>
-        <div class="nav-wrapper">
-          <a href="#" class="brand-logo">URL shortner</a>
+    <nav>   
+        <div class="nav-wrapper grey darken-4">
+          <a href="{{url_for('index')}}" style="font-family: 'Noticia Text', serif;" class="brand-logo ">URL shortner</a>
+          <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Login</a></li>
+            <li><a href="{{url_for('about')}}">About</a></li>
+            <li><a href="{{url_for('feature')}}">What's New</a></li>
+            <li><a href="{{url_for('terms')}}">Terms</a></li>
           </ul>
         </div>
       </nav>
+
+      <!-- sideNav-->
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="#">About</a></li>
+      <li><a href="#">Feature</a></li>
+      <li><a href="#">Terms</a></li>
+     <!-- <li><a href="#">Mobile</a></li> -->
+  </ul>
       
        {%block content%}
 
-       {%endblock content%}     
-    <script type="text/javascript" src="/static/materialize.min.js"></script>
+       {%endblock content%} 
+       {%block style%}
+       
+       {%endblock style%}
+
+
+          <!-- Initialization stuff -->
+          <script type="text/javascript">
+            document.addEventListener('DOMContentLoaded', function() {
+            var snav = document.querySelectorAll('.sidenav');
+            var instances = M.Sidenav.init(snav, {});
+  });
+          </script>
+    <script type="text/javascript" src="{{url_for('static',filename='materialize.min.js')}}"></script>
 
   </body>
 </html>

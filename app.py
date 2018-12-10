@@ -1,4 +1,4 @@
-from flask import Flask,render_template
+from flask import Flask,render_template, request
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -17,10 +17,26 @@ class Url(db.Model):
         self.shorturl=shorturl
         self.uniq = uniq
 
-@app.route('/')
+@app.route('/', methods=['POST','GET'])
 def index():
-    return render_template('home.html')
+    if request.method =='POST':
+        lurl = request.form.get('lurl')
+        return lurl
+        
+    else:    
+        return render_template('home.html')
 
+@app.route('/about')
+def about():
+    return render_template('about.html')
+    
+@app.route('/terms')
+def terms():
+    return render_template('terms.html')
+
+@app.route('/what_new')
+def feature():
+    return render_template('feature.html')
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='3333', debug=True)
