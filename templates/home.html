@@ -9,12 +9,12 @@
     </div>
     <form method="post" action="{{url_for('index')}}">
     <div class="row center-align ">
-
+ 
     	<div class="input-field">
-          <input  name="lurl" placeholder='Long URL' type="url" required class="validate">
-
+          <input id="lurl"  name="lurl" placeholder='Long URL' type="url" required class="validate">
           
         </div>
+        
         <button class="btn waves-effect waves-light purple" type="submit">Submit
    					 <i class="material-icons right">send</i>
  		 </button>
@@ -36,6 +36,15 @@
     font-size: 18px;
     color: #bdc3c7
 }
-
+@media only screen and (min-width: 992px){
+#lurl{
+    width: 700px;
+}
+}
+#lurl:focus{
+    background-color:#34495e;
+    border:10px;
+    border-radius: 5px;
+}
 </style>
 {%endblock style%}
