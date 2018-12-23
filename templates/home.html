@@ -2,7 +2,7 @@
 {%block content%}
 <div class="container">
 	<div class="row">
-    		<h2 id="heading" class=" center-align">lets linking <i class="material-icons">insert_link</i></h2>
+    		<h2 id="heading" class=" center-align">lets Trace linking <i class="material-icons">insert_link</i></h2>
    	</div>
     <div class="row">
     		<h4 id="para" class="center-align"> paste your long URL here</h4>
@@ -11,7 +11,7 @@
     <div class="row center-align ">
  
     	<div class="input-field">
-          <input id="lurl"  name="lurl" placeholder='Long URL' type="url" required class="validate">
+          <input id="lurl"  name="lurl" placeholder='Long URL' type="text" required class="validate">
           
         </div>
         
@@ -20,6 +20,36 @@
  		 </button>
     </div>
     </form>
+
+    {%if data%}   
+        <div id="result">
+            <h1>Here your Shortened URL</h1>
+            <h3 id="data" >{{data}} <a id="copy" onclick="copy()"
+                 class="waves-effect waves-light btn"> <i class="material-icons left">
+                        content_copy</i>Copy</a></h3> 
+            <input id="copytext" value={{data}} type="text">
+            
+            
+        </div>
+        <script>
+            function copy() {
+
+                var copyText = document.getElementById("copytext");
+                copyText.id = 'visible'
+                copyText.select();
+                document.execCommand("copy");
+                console.log('URL copied ')
+                copyText.id='copytext';
+                var btntext = document.getElementById('copy');
+                btntext.innerHTML = 'Copied';
+                btntext.style.backgroundColor = '#8e44ad';
+                
+            }
+            // swal('our Short Link Has been Created successfully');
+        </script>
+           
+    {%endif%}
+
 
 </div>
 {%endblock content%}
@@ -31,20 +61,76 @@
 	color:#ecf0f1;
 	font-family: 'Noticia Text', serif;
 }
+#copytext{
+    display: none;
+}
+#visible{
+    display: block;
+}
+
 #para{
     font-family: 'Arvo', serif;
     font-size: 18px;
     color: #bdc3c7
 }
-@media only screen and (min-width: 992px){
-#lurl{
-    width: 700px;
+#result h1{
+    padding-top: 10px;
+   font-family: 'PT+Sans';
+   font-size:45px;
+   color: white;
+   text-align: center;
+
 }
+#result h3{
+    font-family:"Thasadith";
+    font-size: 35px;
+    color:white;
+    text-align: center;
+    
+}
+#result{
+    height: 200px;
+    border-radius: 4px;
+    background-color: #2c3e50;
+}
+#copy{
+    margin: 5px;
+    color: black;
+    font-weight: bold;
+}
+@keyframes goup {
+  from {bottom: 0px;}
+  to {top: 30px;}
+}
+
+@media only screen and (max-device-width: 480px) {
+    #result h1{
+    padding-top: 10px;
+   font-family: 'PT+Sans';
+   font-size:30px;
+   color: white;
+   text-align: center;
+
+}
+    #result h3{
+    font-family:"Thasadith";
+    font-size: 20px;
+    color:white;
+    text-align: center;
+}
+#copy{
+    
+    display: inline-block;
+    color: black;
+    font-weight: bold;
 }
 #lurl:focus{
     background-color:#34495e;
     border:10px;
     border-radius: 5px;
+}
+#s_url{
+    width: 700px;;
 }
 </style>
 {%endblock style%}
