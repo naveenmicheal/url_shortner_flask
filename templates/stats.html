@@ -1,0 +1,59 @@
+{% include 'layout.html'%}
+{%block content%}
+<style type="text/css">body{
+	color: white;
+}</style>
+<!-- <h1>
+	Browser:
+	{%for n in range(0, count)%}
+		<h5>{{data[n].browser}}</h5>
+	{%endfor%}
+	
+	<p></p>
+</h1> -->
+
+	<center><h1>Statistics</h1></center>
+	<h3>Total Cliks: {{count}}</h3>
+ <table class="striped centered responsive-table">
+        <thead>
+          <tr>
+              <th class="pad5">Time</th>
+              <th>Browser</th>
+              <th>Location</th>
+              <th>ISP</th>
+              <th>Platform</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+          	{% for n in range(0,count)%}
+            	<td class="pad5">{{data[n].time}} </td>
+            	<td>{{data[n].browser}}</td>
+            	<!-- Location updatd soon  -->
+            	<td>Near Earth</td>  
+            	<!-- ISP updated soon -->
+            	<td>Space X ISP</td>
+                <td>{{data[n].device}} </td>
+               </tr> 
+            	{% endfor %}
+            
+        
+        
+   
+        </tbody>
+      </table>
+
+<h1>Graph View:<center>
+	
+	<h4>Graph View on the Development</h4>
+</pcenter></h1>
+<style type="text/css">
+	table{
+		border: solid white 3px;
+	}
+	.pad5{
+
+	}
+</style>
+{%endblock content%}

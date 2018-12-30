@@ -12,14 +12,13 @@ class Url(db.Model):
     longurl = db.Column(db.String(700), nullable=False)
     shorturl = db.Column(db.String(100), nullable=False)
     uniq = db.Column(db.String(100), nullable=False,unique=True, primary_key = True)
-    count =db.Column(db.Integer, nullable=False)
 
-    def __init__(self, id , longurl,shorturl,uniq, count):
+    def __init__(self, id ,longurl,shorturl,uniq):
         self.id = id
         self.longurl= longurl
         self.shorturl=shorturl
         self.uniq = uniq
-        self.count = count
+
 
 class Data(db.Model):
     __tablename__= 'data'
@@ -32,8 +31,9 @@ class Data(db.Model):
     device = db.Column(db.String(50), nullable=True)
     # location = db.Column(db.String(30), nullable=True)
     isp = db.Column(db.String(30), nullable=True)
+    time = db.Column(db.String(80), nullable=False)
 
-    def __init__(self,random_id,longurl,shorturl,uniq,browser,device,isp):
+    def __init__(self,random_id,longurl,shorturl,uniq,browser,device,isp, time):
         self.random_id = random_id
         self.longurl=longurl
         self.shorturl = shorturl
@@ -43,6 +43,7 @@ class Data(db.Model):
         self.device = device   
         # self.location = location  
         self.isp = isp    
+        self.time = time
 # db.drop_all()
 # db.create_all()
 
@@ -76,7 +77,7 @@ def index():
         id_key = month + day + min + sec + r 
 
         try:
-            item = Url(id_key,lurl,'http://localhost:3333/'+uniqkey, uniqkey, 0)
+            item = Url(id_key,lurl,'http://localhost:3333/'+uniqkey, uniqkey)
             s_url = 'http://localhost:3333/'+uniqkey   
             db.session.add(item)
             db.session.commit()
@@ -93,24 +94,31 @@ def dberrror():
  
 @app.route('/<s_url>')
 def surl(s_url):
-    # query to database
-    # try: 
-    print(s_url)
+    # query to database 
+    if s_url[-1] =='+':
+        return redirect('/stats/' + s_url)
+        
     data = Url.query.filter_by(uniq = s_url).first()
-    # print('Before Count ' + str(data.count))
-    data.count = data.count+1
-     # print('After ' + str(data.count)) 
-    db.session.commit()
     # For the DATA_URL table
     raw_c = string.ascii_lowercase
     raw_n = string.digits
-    random_id = ''
+    
     global random_id
+    random_id = ''
     # random_id = random.randint(0,9999999) / random.randint(1,5) * random.choice(raw_n)
     random_id = str(random_id)
     random_id =  random.choice(raw_c)+random.choice(raw_c)+random.choice(raw_c) +random.choice(raw_c) + random.choice(raw_c)+ random.choice(raw_c) + random.choice(raw_c) + random.choice(raw_c) 
 
     longurl = data.longurl
+    r_time = datetime.datetime.utcnow()
+    year = r_time.year
+    month =r_time.month
+    day = r_time.day
+    hour = r_time.hour
+    minute = r_time.minute
+    sec = r_time.second
+    time = str(year) +'-'+ str(month)+'-'+str(day)+':   '+str(hour)+':'+str(minute)+':'+str(sec)
+    print(time)
     shorturl =  data.shorturl
     uniq = data.uniq
     browser = request.user_agent.browser
@@ -118,10 +126,10 @@ def surl(s_url):
     device = request.user_agent.platform
     # location = 'Mars Near on Earth'
     #isp updated after deployed
-    isp = 'Space X on Mars ISP'
+    isp = 'Space ISP'
     # Add URL_DATA on Data table
 
-    item = Data(random_id,longurl,shorturl,uniq,browser,device,isp)
+    item = Data(random_id,longurl,shorturl,uniq,browser,device,isp,time)
     db.session.add(item)
     db.session.commit()
     return redirect(longurl)
@@ -144,6 +152,36 @@ def surl(s_url):
 
     # except:
     #     return 'No record Found'
+
+    # ====================================Stats==============================================
+@app.route('/stats/<s_url>')
+def stats(s_url):
+    s_uniq = s_url.strip('+')
+    print(s_uniq)
+    # try:
+    data = Data.query.filter_by(uniq = s_uniq).all()
+    print(type(data))
+    count = len(data)
+    # print(data[1].browser)
+    # print(data[2].device)
+    # print(data[3].browser)
+
+    for n in range(0,len(data)):
+        
+        print(data[n].browser)
+        print(data[n].device)
+        print(data[n].isp)
+        print('----NEXT _ DATA------')
+
+    
+
+
+    return render_template('stats.html', data = data, count = count)
+    # return '1'
+    # except: 
+    # # print(count)
+    #     return 'Sorry No record Found' 
+
 @app.route('/about')
 def about():
     return render_template('about.html')
