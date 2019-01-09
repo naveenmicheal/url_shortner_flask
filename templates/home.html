@@ -11,7 +11,7 @@
     <div class="row center-align ">
  
     	<div class="input-field">
-          <input id="lurl"  name="lurl" placeholder='Long URL' type="text" required class="validate">
+          <input id="lurl" style="color: white;" name="lurl" placeholder='Long URL' type="text" required class="validate">
           
         </div>
         
@@ -23,7 +23,7 @@
     
     {%if data%}   
         <div id="result">
-            <h1>Here your tracking URL</h1>
+            <h1>Here your tracking   URL</h1>
             <h3 id="data" >{{data}} <a id="copy" onclick="copy()"
                  class="waves-effect waves-light btn"> <i class="material-icons left">
                         content_copy</i>Copy</a></h3> 
@@ -53,6 +53,10 @@
 
 
 </div>
+
+<footer style="background-color: #2c3e50; width: 100%; position: fixed; bottom: 0; height: 50px;">
+          <center> <p style="color: white; text-transform: uppercase; letter-spacing: 3px">by Naveen Micheal</p></center>
+       </footer>   
 {%endblock content%}
 
 {%block style%}
@@ -98,9 +102,6 @@
     margin: 5px;
     color: black;
     font-weight: bold;
-}
-#lurl{
-    color: white;
 }
 @keyframes goup {
   from {bottom: 0px;}

@@ -20,11 +20,7 @@
       .sidenav li a{
         color: white;
       }
-      .page-footer{
-        position: absolute;
-        width: 100%;
-        top: 90%;
-      }
+     
      </style>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noticia+Text|Unlock" rel="stylesheet">
@@ -37,6 +33,7 @@
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="{{url_for('about')}}">About</a></li>
+            <li><a href="{{url_for('howto')}}">How to </a></li>
             <li><a href="{{url_for('feature')}}">What's New</a></li>
             <li><a href="{{url_for('terms')}}">Terms</a></li>
           </ul>
@@ -52,11 +49,12 @@
   </ul>
       
        {%block content%}
-
+       
        {%endblock content%} 
        {%block style%}
        
        {%endblock style%}
+    
        <!-- <br><br><br><br>
        <div  class="page-footer grey darken-4">
         <div class="footer-copyright">

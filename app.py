@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import base64, datetime, binascii, string, random, requests
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb .db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb.db'
 db = SQLAlchemy(app)
 
 class Url(db.Model):
@@ -194,6 +194,9 @@ def terms():
 def feature():
     return render_template('feature.html')
 
+@app.route('/howto')
+def howto():
+    return render_template('howto.html')
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port='3333', debug=True)
-
