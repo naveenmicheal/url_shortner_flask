@@ -11,7 +11,7 @@
     <div class="row center-align ">
  
     	<div class="input-field">
-          <input id="lurl" style="color: white;" name="lurl" placeholder='Long URL' type="text" required class="validate">
+          <input id="lurl" style="color: white;" pattern="https?://.+" name="lurl" placeholder='Enter your long url' type="url" required class="validate">
           
         </div>
         
@@ -27,8 +27,13 @@
             <h3 id="data" >{{data}} <a id="copy" onclick="copy()"
                  class="waves-effect waves-light btn"> <i class="material-icons left">
                         content_copy</i>Copy</a></h3> 
-            <input id="copytext" value={{data}} type="text">
-            
+            <input id="copytext" value="{{ data }}" type="text">
+
+            <center class='hide-on-med-and-down'><small style="color: #b2bec3; font-family: Monospace">Python anyware free plan doesn't offer custom domain name, learn more at <a href="
+            {{url_for('howto')}}#longurl">here</a><br>Bear with me 
+            </small></center>  
+
+            <center><small class="hide-on-med-and-up show-on-small"><a href="{{url_for('howto')}}#longurl">why that URL so long?</a></small></center>          
             
         </div>
         <div style="hight:100px;"> <br> <br></div>
@@ -43,10 +48,10 @@
                 copyText.id='copytext';
                 var btntext = document.getElementById('copy');
                 btntext.innerHTML = 'Copied';
-                btntext.style.backgroundColor = '#8e44ad';
+                btntext.style.backgroundColor = '#f368e0';
                 
             }
-            // swal('our Short Link Has been Created successfully');
+           
         </script>
            
     {%endif%}
@@ -54,9 +59,10 @@
 
 </div>
 
-<footer style="background-color: #2c3e50; width: 100%; position: fixed; bottom: 0; height: 50px;">
+<footer class="hide-on-med-and-down" style="background-color: #2c3e50; width: 100%; position: fixed; bottom: 0; height: 50px;">
           <center> <p style="color: white; text-transform: uppercase; letter-spacing: 3px">by Naveen Micheal</p></center>
-       </footer>   
+       </footer> 
+  <footer class="show-on-small" style="background-color:#2c3e50;position: fixed; "></footer>       
 {%endblock content%}
 
 {%block style%}
@@ -94,7 +100,7 @@
     
 }
 #result{
-    height: 200px;
+    height: 220px;
     border-radius: 4px;
     background-color: #2c3e50;
 }

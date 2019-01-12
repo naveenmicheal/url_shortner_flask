@@ -1,31 +1,72 @@
 {%extends 'layout.html'%}
 
 {%block content%}
-<h1>What is this? </h1>
-<h5>URL shortening is a technique on the World Wide Web in which a Uniform Resource Locator may be made substantially shorter and still direct to the required page, and also some analytics purpose. This is achieved by using a redirect which links to the web page that has a long URL</h5>
-<br>
-
-<h1>How to use this?</h1>
-<h5>You need to enter youyr Long url in Home page, Clik the submit button <br>
-i will produe unique shortened URL, it is mapped your real URL, Then just share that link to yout friends</h5> <br>
-
-<h1>How to see Analytics of that particuler link?</h1>
-<h5>Add the '+' symbol at the End of shortened URL, It will redirect to statistics page</h5> <br>
-
-<h1 style="color: red">Note</h1>
-<h5>We did not use any sign up / login for this service, So that if you lose your shortned URL, You Can't see the Analytics page of that link any more </h5>
-<div style="height: 50px;"></div>
-
 <style type="text/css">
-	h1, h5{
-		text-align: center;
+	body{
+		background-color: black;
 	}
-	h1{
-		color: white;
+	.collection{
+		margin:0;
 	}
-	h5{
-		color: #bdc3c7;
+	.collection .collection-item{
+		border-bottom: 0;
 	}
 </style>
+
+ <ul class="collection" style="">
+    <li class="collection-item avatar" style="background-color: #222f3e; color: white;">
+ 	
+      <h1 style="font-family: Monospace; " class="title">What is this?</h1>
+      <i class="material-icons circle">build</i>
+      <p style="line-height: 30px;">URL shortening is a technique on the World Wide Web in which a Uniform Resource Locator may be made substantially shorter and still direct to the required page, and also some analytics purpose. This is achieved by using a redirect which links to the web page that has a long URL
+        
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">done_all</i></a>
+    </li>
+    <li class="collection-item avatar"  style="background-color: #34495e; color: white;">
+  
+      <h1 style="font-family: Monospace; " class="title"> How to use this?</h1><i class="material-icons circle">build</i>
+      <p>You need to enter youyr Long url in Home page, Clik the submit button 
+it will produe unique shortened URL(ok Now it won't here is why <a href="#">why that link is so length</a> it is mapped your real URL, Then just share that link to yout friends<br>
+         
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">done_all</i></a>
+    </li>
+
+    <li class="collection-item avatar"  style="background-color: #222f3e; color: white">
+     
+      <h1 style="font-family: Monospace; " class="title">How to see Analytics of that particuler link?</h1><i class="material-icons circle">build</i>
+      <p>Add the '+' symbol at the End of shortened URL, It will redirect to statistics page
+       <span style="color: red">Note: </span>Shortned URL is must be needed to see that links statistics <br> Example here your shortned URL <a href="http://localhost:3333/wd43dxcf">http://localhost:3333/wd43dxcf</a> So here Your Shortned URL <a href="http://localhost:3333/wd43dxcf+">http://localhost:3333/wd43dxcf+</a> <br>Note: Now anyone can see the Analytics of your link, if he place a '+' at the End of the URL, in future We will fix that issue using Login Dashboard system
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">done_all</i></a>
+    </li>
+    <li class="collection-item avatar"  style="background-color: #34495e; color: white;">
+      
+      <h1 id="longurl" class="title" style="color: white;font-family: Monospace; ">why that URL is so long</h1> <i class="material-icons circle">build</i>
+      <p>Now,This app is hosted in Python anywhere free service, That free plan does not offer a custom domain option, in future this app will move on Paid hosting plan, from that i will be hosted on proper Top level domain (URL length short as possible)<br>
+        
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">done_all</i></a>
+    </li>
+
+     <li class="collection-item avatar"  style="background-color: #222f3e; color: white;">
+      
+      <h1 id="longurl" class="title" style="color: white;font-family: Monospace; ">Is it alive all that time</h1> <i class="material-icons circle">build</i>
+      <p>No, It is a Earlier version of the product, some times it will be down or changed in future, 
+      	for the further developement, bug fixing<br> so please don't use that service for any important tasks.
+        
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">done_all</i></a>
+    </li>
+    <li class="collection-item avatar"  style="background-color: #34495e; color: white; height: 250px;">
+      
+      <h1 class="title" style="color: white; text-decoration: underline; font-family: Monospace; font-weight: bold;">Note</h1> <i class="material-icons circle">build</i>
+      <p>We did not use any sign up / login for this service, So that if you lose your shortned URL, You Can't see the Analytics page of that link any more<br>
+        
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">done_all</i></a>
+    </li>
+  </ul>
 
 {%endblock content%}

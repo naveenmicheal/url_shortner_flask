@@ -3,7 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 import base64, datetime, binascii, string, random, requests
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydb.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///myDB.db'
+
 db = SQLAlchemy(app)
 
 class Url(db.Model):
@@ -13,7 +14,7 @@ class Url(db.Model):
     shorturl = db.Column(db.String(100), nullable=False)
     uniq = db.Column(db.String(100), nullable=False,unique=True, primary_key = True)
 
-    def __init__(self, id ,longurl,shorturl,uniq):
+    def __init__(self,id, longurl,shorturl,uniq):
         self.id = id
         self.longurl= longurl
         self.shorturl=shorturl
@@ -54,21 +55,23 @@ def index():
         
         # --------For uniq Key generation -----------#
         raw_str = string.ascii_lowercase
-        raw_num = string.digits
-               
+        raw_num = string.digits     
         str_key1 = random.choice(raw_str)
         str_key2= random.choice(raw_str)
         str_key3 = random.choice(raw_str)
-        n_key1 = random.choice(raw_num)
-        n_key2 = random.choice(raw_num)
-        n_key3 = random.choice(raw_num)
+        str_key4 = random.choice(raw_str)
+        str_key5 = random.choice(raw_str)
+        str_key6 = random.choice(raw_str)
+        # n_key1 = random.choice(raw_num)
+        # n_key2 = random.choice(raw_num)
+        # n_key3 = random.choice(raw_num)
         now = datetime.datetime.utcnow()
         r_tuniq = random.randint(0, 100)
         tuniq = ( r_tuniq + now.minute) 
-        uniqkey = str_key1 + str_key2 +str(tuniq) + str_key3 + str(n_key1) + str(n_key3) + str(n_key2) 
+        uniqkey = str_key1 + str_key2 +str(tuniq)+str_key3+str_key4+str_key5+str_key6
 
         # -----------Uniq ID Generation------------------#
-        now= datetime.datetime.utcnow()
+        now = datetime.datetime.utcnow()
         month = str(now.month)
         day = str(now.day)
         min = str(now.minute)
@@ -76,14 +79,14 @@ def index():
         r = str(random.randint(0,100))
         id_key = month + day + min + sec + r 
 
-        try:
-            item = Url(id_key,lurl,'http://localhost:3333/'+uniqkey, uniqkey)
-            s_url = 'http://localhost:3333/'+uniqkey   
-            db.session.add(item)
-            db.session.commit()
-            return render_template('home.html', data = s_url)
-        except:
-            return redirect(url_for('dberrror'))    
+        # try:
+        item = Url(id_key, lurl,'http://localhost:3333/'+uniqkey,uniqkey)
+        s_url = 'http://localhost:3333/'+uniqkey   
+        db.session.add(item)
+        db.session.commit()
+        return render_template('home.html', data = s_url)
+        # except:
+        # return redirect(url_for('dberrror'))    
          
     else:    
         return render_template('home.html')
@@ -91,6 +94,11 @@ def index():
 @app.route('/error')
 def dberrror():
     return render_template('error.html')
+
+# @app.errorhandler(404)
+# def error404():
+#     # note that we set the 404 status explicitly
+#     return render_template('404.html'), 404    
  
 @app.route('/<s_url>')
 def surl(s_url):
@@ -99,6 +107,10 @@ def surl(s_url):
         return redirect('/stats/' + s_url)
         
     data = Url.query.filter_by(uniq = s_url).first()
+    print(data)
+    print(type(data))
+    if data == None: 
+        return render_template('404.html')
     # For the DATA_URL table
     raw_c = string.ascii_lowercase
     raw_n = string.digits
@@ -160,6 +172,8 @@ def stats(s_url):
     print(s_uniq)
     # try:
     data = Data.query.filter_by(uniq = s_uniq).all()
+    if data ==None:
+        return render_template('404.html')
     print(type(data))
     count = len(data)
     # print(data[1].browser)

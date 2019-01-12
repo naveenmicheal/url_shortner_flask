@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>url shortner</title>
+    <title>Link Tracer</title>
     <link type="text/css" rel="stylesheet" href="{{url_for('static',filename='materialize.min.css')}}" />
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
@@ -13,7 +13,8 @@
         padding-right: 30px;
       }
       .sidenav{
-        background-color:#576574;
+        background-color:#222f3e;
+        width: 250px;
 
         
       }
@@ -24,18 +25,20 @@
      </style>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Noticia+Text|Unlock" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href={{url_for('static', filename='favicon.ico')}}/>
   </head>
   <body class="blue-grey darken-4">
     <!-- Nav-Bar -->
     <nav>   
         <div class="nav-wrapper grey darken-4">
-          <a href="{{url_for('index')}}" style="font-family: 'Noticia Text', serif;" class="brand-logo ">URL shortner</a>
+          <a href="{{url_for('index')}}" style="font-family: 'Noticia Text', serif; margin-left: 10px;" class="brand-logo ">Link Tracer</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li><a href="{{url_for('about')}}">About</a></li>
             <li><a href="{{url_for('howto')}}">How to </a></li>
             <li><a href="{{url_for('feature')}}">What's New</a></li>
             <li><a href="{{url_for('terms')}}">Terms</a></li>
+
           </ul>
         </div>
       </nav>
@@ -45,6 +48,7 @@
       <li><a href="{{url_for('about')}}">About</a></li>
       <li><a href="{{url_for('feature')}}">Feature</a></li>
       <li><a href="{{url_for('terms')}}">Terms</a></li>
+      <li><a href="{{url_for('howto')}}">How to</a></li>
      <!-- <li><a href="#">Mobile</a></li> -->
   </ul>
       
